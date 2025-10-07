@@ -12,7 +12,7 @@ on:
       - target/**
   pull_request:
     branches:
-      - '*'  # any PR target
+      - 'dev'  # any PR target
     paths-ignore:
       - src/test/java/**
       - target/**
