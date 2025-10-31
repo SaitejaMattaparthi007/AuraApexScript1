@@ -1,0 +1,8 @@
+public class Foo {
+    public void foo() {
+        Account newAccount = new Account();
+        newAccount.Name = 'John Doe';       //Bad
+        newAccount.Email = responseMap.get('email').toString();     //Good
+    }
+}
+  
