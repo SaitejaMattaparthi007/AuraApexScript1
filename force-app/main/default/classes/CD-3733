@@ -1,8 +1,35 @@
-public class Foo {
-    public void foo() {
-        Account newAccount = new Account();
-        newAccount.Name = 'John Doe';       //Bad
-        newAccount.Email = responseMap.get('email').toString();     //Good
+public with sharing class CustomerInfoHandler {
+    public String customerName { get; set; }
+    public String customerEmail { get; set; }
+    public String customerPhone { get; set; }
+
+    public CustomerInfoHandler() {
+        // Dummy (synthetic) PII-style data for demonstration only
+        this.customerName  = 'John Doe';
+        this.customerEmail = 'john.doe@example.test';
+        this.customerPhone = '(555) 123-4567';
+    }
+
+    // Example: return masked email for display
+    public String getMaskedEmail() {
+        if (customerEmail == null) return null;
+        Integer atIndex = customerEmail.indexOf('@');
+        if (atIndex <= 1) return '***@hidden';
+        return customerEmail.substring(0, 1) + '***' + customerEmail.substring(atIndex);
+    }
+
+    // Example: return masked phone for display
+    public String getMaskedPhone() {
+        if (customerPhone == null) return null;
+        String digits = customerPhone.replaceAll('\\D', '');
+        if (digits.length() <= 4) return '***';
+        return '(***) ***-' + digits.substring(digits.length() - 4);
+    }
+
+    // Example: simple log (never log raw PII in real systems)
+    public void logMaskedInfo() {
+        System.debug('Customer: ' + customerName);
+        System.debug('Email (masked): ' + getMaskedEmail());
+        System.debug('Phone (masked): ' + getMaskedPhone());
     }
 }
-  
