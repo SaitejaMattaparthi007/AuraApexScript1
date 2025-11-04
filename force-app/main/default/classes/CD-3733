@@ -1,35 +1,24 @@
-public with sharing class CustomerInfoHandler {
-    public String customerName { get; set; }
-    public String customerEmail { get; set; }
-    public String customerPhone { get; set; }
+public class PIIFieldTestHandler {
+    public String customerName;
+    public String customerEmail;
+    public String phoneNumber;
+    public String ssn; // Social Security Number
+    public String panNumber; // PAN (India)
+    public String creditCardNumber; // Sensitive
+    public String homeAddress;
+    public String dateOfBirth;
 
-    public CustomerInfoHandler() {
-        // Dummy (synthetic) PII-style data for demonstration only
-        this.customerName  = 'John Doe';
-        this.customerEmail = 'john.doe@example.test';
-        this.customerPhone = '(555) 123-4567';
-    }
+    public void processCustomerData() {
+        // Logging sensitive info (bad practice)
+        System.debug('Processing customer: ' + customerName);
+        System.debug('Email: ' + customerEmail);
+        System.debug('Phone: ' + phoneNumber);
+        System.debug('SSN: ' + ssn);
 
-    // Example: return masked email for display
-    public String getMaskedEmail() {
-        if (customerEmail == null) return null;
-        Integer atIndex = customerEmail.indexOf('@');
-        if (atIndex <= 1) return '***@hidden';
-        return customerEmail.substring(0, 1) + '***' + customerEmail.substring(atIndex);
-    }
-
-    // Example: return masked phone for display
-    public String getMaskedPhone() {
-        if (customerPhone == null) return null;
-        String digits = customerPhone.replaceAll('\\D', '');
-        if (digits.length() <= 4) return '***';
-        return '(***) ***-' + digits.substring(digits.length() - 4);
-    }
-
-    // Example: simple log (never log raw PII in real systems)
-    public void logMaskedInfo() {
-        System.debug('Customer: ' + customerName);
-        System.debug('Email (masked): ' + getMaskedEmail());
-        System.debug('Phone (masked): ' + getMaskedPhone());
+        // Storing sensitive info in a map
+        Map<String, String> piiData = new Map<String, String>();
+        piiData.put('email', customerEmail);
+        piiData.put('ssn', ssn);
+        piiData.put('dob', dateOfBirth);
     }
 }
