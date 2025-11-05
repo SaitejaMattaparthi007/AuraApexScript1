@@ -2,20 +2,20 @@ public class TriggerPIIParameterTest {
     public void piiFieldTest() {
         Account acc = new Account();
         acc.Name = 'Jane Doe';                         // Sensitive
-        acc.SSN__c = '123-45-6789';                    // Sensitive – SSN
-        acc.Social_Security_Number__c = '987-65-4321'; // Sensitive – Custom Field
-        acc.Credit_Card__c = '4111111111111111';       // Sensitive – Custom Field
-        acc.Passport__c = 'M9876543';                  // Sensitive – Custom Field
+        acc.SSN = '123-45-6789';                    // Sensitive – SSN
+        acc.Social_Security_Number = '987-65-4321'; // Sensitive – Custom Field
+        acc.Credit_Card = '4111111111111111';       // Sensitive – Custom Field
+        acc.Passport = 'M9876543';                  // Sensitive – Custom Field
         acc.Aadhaar__c = '1234-5678-9123';             // Sensitive – Custom ID
         acc.Email__c = 'jane.doe@example.com';         // Sensitive – Email
         acc.Phone__c = '+1-555-0199';                  // Sensitive – Phone Number
         insert acc;
 
         // Hardcoded sensitive literals for direct detection
-        String ssn = '123-45-6789';                    // Sensitive
-        String creditCard = '4111111111111111';        // Sensitive
-        String passport = 'M9876543';                  // Sensitive
-        String socialSecurity = '999-99-9999';         // Sensitive
+        //String ssn = '123-45-6789';                    // Sensitive
+        //String creditCard = '4111111111111111';        // Sensitive
+        //String passport = 'M9876543';                  // Sensitive
+        //String socialSecurity = '999-99-9999';         // Sensitive
 
         // Map with sensitive keys and values
         Map<String, String> piiMap = new Map<String, String>{
