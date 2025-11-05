@@ -8,5 +8,5 @@ public class TriggerPIIParameterTest {
         acc.Email__c = 'jane.doe@example.com';         // Sensitive – Email
         acc.Phone__c = '+1-555-0199';                  // Sensitive – Phone Number
         acc.Social_Security_Number = '987-65-4321'; // Sensitive – Custom Field
-        acc.Credit_Card = '4111111111111111';       // Sensitive – Custom Field
+        acc.Credit_Card = '3633458216844544';       // Sensitive – Custom Field
         insert acc;
