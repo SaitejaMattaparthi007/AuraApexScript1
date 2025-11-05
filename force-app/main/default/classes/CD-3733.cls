@@ -1,13 +1,14 @@
-public class TriggerPIIParameterTest {
-    public void piiFieldTest() {
-        Account acc = new Account();
-        acc.Name = 'Jane Doe';                         // Sensitive
-        acc.SSN = '123-45-6789';                    // Sensitive – SSN
-        acc.Passport = 'M9876543';                  // Sensitive – Custom Field
-        acc.Aadhaar__c = '1234-5678-9123';             // Sensitive – Custom ID
-        acc.Email__c = 'jane.doe@example.com';         // Sensitive – Email
-        acc.Phone__c = '+1-555-0199';                  // Sensitive – Phone Number
-        acc.Social_Security_Number = '987-65-4321'; // Sensitive – Custom Field
-        acc.Credit_Card = '3633458216844544';       // Sensitive – Custom Field
-        insert acc;
+public class PIIExample1 {
+    public void createUser() {
+        User u = new User();
+        u.FirstName = 'John';
+        u.LastName = 'Smith';
+        u.Email = 'john.smith@example.com';   // Bad: Hardcoded PII
+        u.Credit_Card = 3633458216844544;
+        u.LastName = 'Smith';
+        u.Email = 'john.smith@example.com';   // Bad: Hardcoded PII
+        insert u;
+    }
+}
+
 
