@@ -9,8 +9,8 @@ public with sharing class IterationRecipes {
 
     private string anotheraccount {
         get{
-            this.account = 'test';
-            return this.propertyVal;
+            //this.account = 'test';
+            //return this.propertyVal;
         }
         set;
     }
