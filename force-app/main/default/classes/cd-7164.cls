@@ -7,6 +7,14 @@ public with sharing class IterationRecipes {
         return records;
     } 
 
+    private string anotheraccount {
+        get{
+            this.account = 'test';
+            return this.propertyVal;
+        }
+        set;
+    }
+
     public static ArrayList<String> iterableApiClientRecipe() {
         // Some some = null;
         return null;
