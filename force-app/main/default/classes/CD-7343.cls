@@ -16,18 +16,6 @@ public class LargeSwitchCaseExample {
             when 3 {
                 label = 'Stage 3 - Validation';
             }
-            when 4 {
-                label = 'Stage 4 - Code Review';
-            }
-            when 5 {
-                label = 'Stage 5 - Security Scan';
-            }
-            when 6 {
-                label = 'Stage 6 - Packaging';
-            }
-            when 7 {
-                label = 'Stage 7 - Deployment';
-            }
             when else {
                 label = 'Unknown Stage';
             }
