@@ -28,21 +28,6 @@ public class LargeSwitchCaseExample {
             when 7 {
                 label = 'Stage 7 - Deployment';
             }
-            when 8 {
-                label = 'Stage 8 - Post Deployment Tests';
-            }
-            when 9 {
-                label = 'Stage 9 - Monitoring';
-            }
-            when 10 {
-                label = 'Stage 10 - Completed';
-            }
-            when 11 {
-                label = 'Stage 11 - Archived';
-            }
-            when 12 {
-                label = 'Stage 12 - Cleanup';
-            }
             when else {
                 label = 'Unknown Stage';
             }
