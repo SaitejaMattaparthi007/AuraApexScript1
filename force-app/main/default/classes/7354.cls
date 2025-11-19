@@ -4,8 +4,8 @@ public with sharing class RuleBugDemo {
 
     private string anotherPropertyVal {
         get{
-            //this.propertyVal = 'test';
-            //return this.propertyVal;
+            this.propertyVal = 'test';
+            return this.propertyVal;
         }
         set;
     }
