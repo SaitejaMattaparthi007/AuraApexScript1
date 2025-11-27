@@ -8,15 +8,7 @@ public class EmptySwitchStatementsTrigger {
         }
     }
     
-    public void handleOpportunityStageEmpty(String stageName) {
-        // Triggers sf:EmptySwitchStatements - switch with only empty when else
-        switch on stageName {
-            when else {
-                // Empty else case only
-            }
-        }
-    }
-    
+   
     public String getCasePriorityEmpty(String priority) {
         // Triggers sf:EmptySwitchStatements - switch with empty cases
         switch on priority {
