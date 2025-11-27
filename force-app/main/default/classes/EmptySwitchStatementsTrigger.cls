@@ -29,6 +29,9 @@ public class EmptySwitchStatementsTrigger {
             when 'Low' {
                 // Empty case
             }
+            when 'Critical' {
+                // Empty case
+            }
             when else {
                 // Empty else case
             }
