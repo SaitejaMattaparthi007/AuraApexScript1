@@ -25,7 +25,3 @@ public with sharing class MetadataRuleUpdater {
 
 
 
-
-
-
-
