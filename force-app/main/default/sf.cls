@@ -10,14 +10,7 @@ public with sharing class ParserProblemTrigger {
             System.debug('Loop count: ' + i // Missing closing parenthesis and semicolon
 
     // Random code outside method
-    Integer x = 10
 
-    public void anotherMethod() {
-        System.debug('Another method');
-        // Incorrectly nested block
-        if(x > 5) {
-            System.debug('x is large');
-    } else
         System.debug('x is small');
         } // This brace doesn't match up properly
 }
