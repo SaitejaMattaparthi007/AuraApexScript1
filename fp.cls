@@ -23,6 +23,7 @@ public with sharing class  CF_ORC {
         @AuraEnabled public String uBU;
     }
 
+
     @AuraEnabled
     public static UIW getUxInfo(){
         List<Ux> Uxs = [SELECT SO__c, CF_BU__c FROM Ux WHERE Id =: UxInfo.gUxId() WITH SECURITY_ENFORCED];
