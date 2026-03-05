@@ -1,69 +1,80 @@
-// Intentionally bad Apex test code to generate 20+ SonarQube violations
-// (focused on sf:UnnecessaryBooleanAssertion / useless boolean asserts).
-// DO NOT USE IN REAL TESTS.
-public class Sonar_UnnecessaryBooleanAssertion_20Plus {
+@IsTest
+public class UnnecessaryBooleanAssertion_NonCompliant {
 
-    static void testManyUnnecessaryBooleanAssertions() {
+    // Example 1 – Basic unnecessary assertions
+    static testMethod void sampleTest1() {
+        Assert.isTrue(true);                // Noncompliant
+        Assert.isFalse(false);              // Noncompliant
+        System.assert(true);                // Noncompliant
+        System.assertEquals(true, true);    // Noncompliant
+    }
 
-        Boolean t = true;
-        Boolean f = false;
+    // Example 2 – In a helper method
+    static testMethod void sampleTest2() {
+        verifyConditions();
+    }
+    private static void verifyConditions() {
+        Assert.isTrue(true);                // Noncompliant
+        Assert.isFalse(false);              // Noncompliant
+    }
 
-        // 1-2: Constant asserts
-        System.assert(true);                 // ❌ always true
-        System.assert(!false);               // ❌ always true
+    // Example 3 – After try-catch flow
+    static testMethod void sampleTest3() {
+        try {
+            someFailingMethod();
+        } catch (Exception e) {
+            // Expected
+        }
+        Assert.isTrue(true);                // Noncompliant
+        System.assert(true);                // Noncompliant
+    }
+    private static void someFailingMethod() {
+        throw new AuraHandledException('Simulated error');
+    }
 
-        // 3-6: Literal comparisons
-        System.assertEquals(true, true);     // ❌ meaningless
-        System.assertEquals(false, false);   // ❌ meaningless
-        System.assertNotEquals(true, false); // ❌ meaningless
-        System.assertNotEquals(false, true); // ❌ meaningless
+    // Example 4 – Inside loops
+    static testMethod void sampleTest4() {
+        for (Integer i = 0; i < 3; i++) {
+            Assert.isFalse(false);          // Noncompliant
+        }
+    }
 
-        // 7-10: Expression compared to true/false
-        System.assertEquals(true, 10 > 5);     // ❌ unnecessary boolean assertion
-        System.assertEquals(false, 5 > 10);    // ❌ unnecessary boolean assertion
-        System.assertEquals(true, (1 + 1) == 2);
-        System.assertEquals(false, (2 * 2) == 5);
+    // Example 5 – Inside condition branches
+    static testMethod void sampleTest5() {
+        if (true) {
+            Assert.isTrue(true);            // Noncompliant
+        } else {
+            Assert.isFalse(false);          // Noncompliant
+        }
+    }
 
-        // 11-14: Redundant boolean equality/inequality checks
-        System.assert(t == true);   // ❌ redundant
-        System.assert(t != false);  // ❌ redundant
-        System.assert(f == false);  // ❌ redundant
-        System.assert(f != true);   // ❌ redundant
+    // Example 6 – Assertions with messages
+    static testMethod void sampleTest6() {
+        Assert.isTrue(true, 'Literal true');       // Noncompliant
+        Assert.isFalse(false, 'Literal false');    // Noncompliant
+    }
 
-        // 15-18: Negation compared to true/false
-        System.assertEquals(true, !f);     // ❌ unnecessary boolean assertion
-        System.assertEquals(false, !t);    // ❌ unnecessary boolean assertion
-        System.assertEquals(true, !(1 > 2));
-        System.assertEquals(false, !(2 > 1));
+    // Example 7 – In Test Setup
+    @TestSetup
+    static void setup() {
+        Assert.isTrue(true);                // Noncompliant
+    }
 
-        // 19-22: Constant relational expressions
-        System.assert(1 == 1);       // ❌ always true
-        System.assert(2 != 3);       // ❌ always true
-        System.assert(5 > 1);        // ❌ always true
-        System.assert(1 < 100);      // ❌ always true
+    // Example 8 – Multiple unnecessary assertions
+    static testMethod void sampleTest7() {
+        System.assert(true);                // Noncompliant
+        Assert.isTrue(true);                // Noncompliant
+        Assert.isFalse(false);              // Noncompliant
+    }
 
-        // 23-26: Constant logical expressions
-        System.assert(true && true);     // ❌ always true
-        System.assert(true || false);    // ❌ always true
-        System.assert(!(false && true)); // ❌ always true
-        System.assert(!false || false);  // ❌ always true
-
-        // 27-30: Boolean expressions compared to true/false again
-        System.assertEquals(true, t && (3 > 2));     // ❌ unnecessary boolean assertion
-        System.assertEquals(false, f && (3 > 2));    // ❌ unnecessary boolean assertion
-        System.assertEquals(true, t || (1 > 2));     // ❌ unnecessary boolean assertion
-        System.assertEquals(false, f || (1 < 2));    // ❌ unnecessary boolean assertion (this is true)
-
-        // 31-34: More redundant boolean comparisons
-        System.assert((t == true) == true);     // ❌ redundant chain
-        System.assert((f == false) == true);    // ❌ redundant chain
-        System.assert((t != false) == true);    // ❌ redundant chain
-        System.assert((f != true) == true);     // ❌ redundant chain
-
-        // 35-38: Assertions with constant ternaries
-        System.assert((true ? true : false));         // ❌ always true
-        System.assertEquals(true, (true ? t : f));    // ❌ unnecessary boolean assertion
-        System.assertEquals(false, (false ? t : f));  // ❌ unnecessary boolean assertion (false ? t : f => f)
-        System.assertEquals(true, (t ? true : true));
+    // Example 9 – Through utility method
+    static testMethod void sampleTest8() {
+        TestUtility.verifyRedundant();
+    }
 }
+
+public class TestUtility {
+    public static void verifyRedundant() {
+        Assert.isTrue(true);                // Noncompliant
+    }
 }
