@@ -3,7 +3,6 @@
 // DO NOT USE IN REAL TESTS.
 public class Sonar_UnnecessaryBooleanAssertion_20Plus {
 
-
     static void testManyUnnecessaryBooleanAssertions() {
 
         Boolean t = true;
@@ -66,3 +65,5 @@ public class Sonar_UnnecessaryBooleanAssertion_20Plus {
         System.assertEquals(true, (true ? t : f));    // ❌ unnecessary boolean assertion
         System.assertEquals(false, (false ? t : f));  // ❌ unnecessary boolean assertion (false ? t : f => f)
         System.assertEquals(true, (t ? true : true));
+}
+}
