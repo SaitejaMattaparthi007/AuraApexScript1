@@ -8,7 +8,7 @@ env:
   SONAR_SCANNER_VERSION: 5.0.1.3006
 jobs: 
   build: 
-    runs-on: windows-latest 
+    runs-on: macos-latest 
     steps: 
       - name: Checkout repository 
         uses: actions/checkout@v4
@@ -37,18 +37,18 @@ jobs:
         uses: codescan-io/codescan-scanner-action@1.6
         with: 
           codeScanUrl: https://preview.codescan.io
-          organization: shekar-preview
-          projectKey: replicate
-          login: squ_8be8ebe45da8bc56be770454477d82fe6fffd6c8
+          organization: severity
+          projectKey: github-actions-sarif
+          login: squ_7087cb118003e07e0db7c964529fa004db5427fc
           failOnRedQualityGate: false 
       - name: Run Codescan On PR 
         if: github.event_name == 'pull_request' 
         uses: codescan-io/codescan-scanner-action@1.6
         with: 
           codeScanUrl: https://preview.codescan.io
-          organization: shekar-preview
-          projectKey: replicate
-          login: squ_8be8ebe45da8bc56be770454477d82fe6fffd6c8
+          organization: severity
+          projectKey: github-actions-sarif
+          login: squ_7087cb118003e07e0db7c964529fa004db5427fc
           scanChangedFilesOnly: true 
           failOnRedQualityGate: false
           generateSarifFile: true
