@@ -34,7 +34,7 @@ jobs:
           scanChangedFilesOnly: true
           organization: severity
           projectKey: github-actions-sarif
-          codeScanUrl: https://preview.codescan.io/
+          codeScanUrl: https://preview.codescan.io
           login: squ_7087cb118003e07e0db7c964529fa004db5427fc
           generateSarifFile: true
       - name: Run Codescan On PR
@@ -44,7 +44,7 @@ jobs:
           scanChangedFilesOnly: true
           organization: severity
           projectKey: github-actions-sarif
-          codeScanUrl: https://preview.codescan.io/
+          codeScanUrl: https://preview.codescan.io
           login: squ_7087cb118003e07e0db7c964529fa004db5427fc
           generateSarifFile: true
           args: |
