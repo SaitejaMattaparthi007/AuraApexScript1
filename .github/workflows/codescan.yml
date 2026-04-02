@@ -1,73 +1,63 @@
-name: CI
-
-on:
-  push:
-    branches: [master]
-  pull_request:
-    branches: [master]
-
-env:
+name: CI 
+on: 
+  push: 
+    branches: [master] 
+  pull_request: 
+    branches: [master] 
+env: 
   SONAR_SCANNER_VERSION: 5.0.1.3006
-
-jobs:
-  build:
-    runs-on: windows-latest
-
-    steps:
-      - name: Checkout repository
+jobs: 
+  build: 
+    runs-on: windows-latest 
+    steps: 
+      - name: Checkout repository 
         uses: actions/checkout@v4
-
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20'
-
-      - name: Set up Java JDK
+          node-version: '20'  # or the version you need
+      - name: Setup Java JDK
         uses: actions/setup-java@v4
         with:
-          distribution: zulu
-          java-version: '17'
-
+          distribution: 'zulu'
+          java-version: 17
       - name: Verify Java installation
         run: java -version
-
-      - name: Cache sonar files
+      - name: Set JAVA_HOME environment variable
+        run: echo "JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java))))" >> $GITHUB_ENV
+      - name: Cache files 
         uses: actions/cache@v4
-        with:
-          path: ~/.sonar
-          key: ${{ runner.os }}-sonar
-          restore-keys: |
-            ${{ runner.os }}-sonar
-
-      - name: Run CodeScan on push
-        if: github.event_name == 'push'
+        with: 
+            path: | 
+                ~/.sonar 
+            key: ${{ runner.os }}-sonar 
+            restore-keys: ${{ runner.os }}-sonar      
+      - name: Run Codescan On Push 
+        if: github.event_name == 'push' 
         uses: codescan-io/codescan-scanner-action@1.6
-        with:
+        with: 
           codeScanUrl: https://preview.codescan.io
-          organization: severity
-          projectKey: github-actions-sarif
-          login: squ_7087cb118003e07e0db7c964529fa004db5427fc
-          failOnRedQualityGate: false
-
-      - name: Run CodeScan on PR
-        if: github.event_name == 'pull_request'
+          organization: shekar-preview
+          projectKey: replicate
+          login: squ_8be8ebe45da8bc56be770454477d82fe6fffd6c8
+          failOnRedQualityGate: false 
+      - name: Run Codescan On PR 
+        if: github.event_name == 'pull_request' 
         uses: codescan-io/codescan-scanner-action@1.6
-        with:
+        with: 
           codeScanUrl: https://preview.codescan.io
-          organization: severity
-          projectKey: github-actions-sarif
-          login: squ_7087cb118003e07e0db7c964529fa004db5427fc
-          scanChangedFilesOnly: true
+          organization: shekar-preview
+          projectKey: replicate
+          login: squ_8be8ebe45da8bc56be770454477d82fe6fffd6c8
+          scanChangedFilesOnly: true 
           failOnRedQualityGate: false
           generateSarifFile: true
-          args: |
-            sonar.pullrequest.branch=${{ github.head_ref }}
-            sonar.pullrequest.base=${{ github.base_ref }}
-            sonar.pullrequest.key=${{ github.event.number }}
-
-      - name: Upload SARIF artifact
-        if: github.event_name == 'pull_request'
+          args: | 
+            sonar.pullrequest.branch=${{github.head_ref}} 
+            sonar.pullrequest.base=${{github.base_ref}} 
+            sonar.pullrequest.key=${{github.event.number}} 
+      - name: Archive code coverage results
         uses: actions/upload-artifact@v4
         with:
-          name: codescan-sarif
-          path: codescan.sarif
+            name: codescan.sarif
+            path: codescan.sarif 
