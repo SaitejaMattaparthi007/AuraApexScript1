@@ -26,7 +26,7 @@ jobs:
           codeScanUrl: https://app-aus.codescan.io
           organization: cs-release-25-1-12
           projectKey: aus-severitymasking
-          login: squ_cc1fa62d84396831a952166a1f4c1a73b87e67b8
+          login: squ_47ba9c30898cee3d6ad0f161d29c5c91bcc8f94e
           failOnRedQualityGate: true
           generateSarifFile: true
       - name: Run Codescan On PR 
@@ -36,7 +36,7 @@ jobs:
           codeScanUrl: https://app-aus.codescan.io
           organization: cs-release-25-1-12
           projectKey: aus-severitymasking
-          login: squ_cc1fa62d84396831a952166a1f4c1a73b87e67b8
+          login: squ_47ba9c30898cee3d6ad0f161d29c5c91bcc8f94e
           scanChangedFilesOnly: true
           failOnRedQualityGate: true
           generateSarifFile: false
