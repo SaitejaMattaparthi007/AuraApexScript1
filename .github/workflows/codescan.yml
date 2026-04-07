@@ -28,6 +28,7 @@ jobs:
           projectKey: aus-severitymasking
           login: squ_cc1fa62d84396831a952166a1f4c1a73b87e67b8
           failOnRedQualityGate: true
+          generateSarifFile: true
       - name: Run Codescan On PR 
         if: github.event_name == 'pull_request' 
         uses: codescan-io/codescan-scanner-action@1.6
@@ -38,7 +39,7 @@ jobs:
           login: squ_cc1fa62d84396831a952166a1f4c1a73b87e67b8
           scanChangedFilesOnly: true
           failOnRedQualityGate: true
-          generateSarifFile: true
+          generateSarifFile: false
           args: | 
             sonar.pullrequest.branch=${{github.head_ref}} 
             sonar.pullrequest.base=${{github.base_ref}} 
