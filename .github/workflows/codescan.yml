@@ -31,29 +31,6 @@ jobs:
           generateSarifFile: true
           args: |
             sonar.scanner.skipJreProvisioning=true
-jobs1: 
-  build: 
-    runs-on: windows-latest 
-    steps: 
-      - name: Checkout repository 
-        uses: actions/checkout@v4
-      - name: Cache files 
-        uses: actions/cache@v4
-        with: 
-            path: | 
-                ~/.sonar 
-            key: ${{ runner.os }}-sonar
-            restore-keys: ${{ runner.os }}-sonar      
-      - name: Run Codescan On Push
-        if: github.event_name == 'push' 
-        uses: codescan-io/codescan-scanner-action@1.6
-        with: 
-          codeScanUrl: https://app-aus.codescan.io
-          organization: cs-release-25-1-12
-          projectKey: aus-severitymasking
-          login: squ_47ba9c30898cee3d6ad0f161d29c5c91bcc8f94e
-          failOnRedQualityGate: true
-          generateSarifFile: true
       - name: Run Codescan On PR 
         if: github.event_name == 'pull_request' 
         uses: codescan-io/codescan-scanner-action@1.6
