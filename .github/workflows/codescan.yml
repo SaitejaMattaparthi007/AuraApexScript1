@@ -1,53 +1,62 @@
-name: CI 
-on: 
+name: CI
+env:  
+    SONAR_SCANNER_VERSION: 5.0.1.3006
+on:
   push: 
-    branches: [main] 
-  pull_request: 
-    branches: [main] 
-env: 
-  SONAR_SCANNER_VERSION: 5.0.1.3006
-jobs: 
-  build: 
-    runs-on: windows-latest
-    steps: 
-      - name: Checkout repository 
+    branches:
+      - '*'
+    paths-ignore:
+      - src/test/java/**
+      - target/**
+  pull_request:
+    branches: 
+      - '*'
+    paths-ignore:
+      - src/test/java/**
+      - target/**
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout repository
         uses: actions/checkout@v4
-      - name: Cache files 
+      - name: Cache files
         uses: actions/cache@v4
+        with:
+            path: |
+                ~/.sonar
+            key: ${{ runner.os }}-sonar
+            restore-keys: ${{ runner.os }}-sonar
+      - name: Run Codescan On Push
+        if: github.event_name == 'push'
+        uses: codescan-io/codescan-scanner-action@2.0
         with: 
-            path: | 
-                ~/.sonar 
-            key: ${{ runner.os }}-sonar 
-            restore-keys: ${{ runner.os }}-sonar 
-      - name: Run Codescan On Push 
-        if: github.event_name == 'push' 
-        uses: codescan-io/codescan-scanner-action@1.6
+          scanChangedFilesOnly: true
+          organization: severity1
+          projectKey: sarif-githubactions
+          codeScanUrl: https://preview.codescan.io
+          login: squ_7087cb118003e07e0db7c964529fa004db5427fc
+          generateSarifFile: true
+      - name: Run Codescan On PR
+        if: github.event_name == 'pull_request'
+        uses: codescan-io/codescan-scanner-action@2.0
         with: 
-          codeScanUrl: https://app-aus.codescan.io
-          organization: cs-release-25-1-12
-          projectKey: aus-severitymasking
-          login: squ_47ba9c30898cee3d6ad0f161d29c5c91bcc8f94e
-          failOnRedQualityGate: true
+          scanChangedFilesOnly: true
+          organization: severity
+          projectKey: sarif-githubactions
+          codeScanUrl: https://preview.codescan.io
+          login: squ_7087cb118003e07e0db7c964529fa004db5427fc
           generateSarifFile: true
           args: |
-            sonar.scanner.skipJreProvisioning=true
-      - name: Run Codescan On PR 
-        if: github.event_name == 'pull_request' 
-        uses: codescan-io/codescan-scanner-action@1.6
-        with: 
-          codeScanUrl: https://app-aus.codescan.io
-          organization: cs-release-25-1-12
-          projectKey: aus-severitymasking
-          login: squ_47ba9c30898cee3d6ad0f161d29c5c91bcc8f94e
-          scanChangedFilesOnly: true
-          failOnRedQualityGate: true
-          generateSarifFile: false
-          args: | 
-            sonar.pullrequest.branch=${{github.head_ref}} 
-            sonar.pullrequest.base=${{github.base_ref}} 
-            sonar.pullrequest.key=${{github.event.number}} 
+            sonar.pullrequest.branch=${{github.head_ref}}
+            sonar.pullrequest.base=${{github.base_ref}}
+            sonar.pullrequest.key=${{github.event.number}}
+      - name: Upload SARIF file
+        uses: github/codeql-action/upload-sarif@v4
+        with:
+          sarif_file: codescan.sarif
       - name: Archive code coverage results
         uses: actions/upload-artifact@v4
         with:
-            name: codescan.sarif
-            path: codescan.sarif 
+          name: codescan.sarif
+          path: codescan.sarif
