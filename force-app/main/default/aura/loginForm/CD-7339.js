@@ -1,5 +1,9 @@
 /*eslint no-irregular-whitespace: "error"*/
 
+// eval.test.js
+
+/* no test cases */
+
 // Example 1 – Non-breaking space (\u00A0)
 function exampleOne() { // <-- contains NBSP between ")" and "{"
     return 'Invalid whitespace detected';
