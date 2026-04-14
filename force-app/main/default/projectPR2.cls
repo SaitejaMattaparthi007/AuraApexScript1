@@ -165,6 +165,14 @@ public with sharing class SonarQubeIssuesDemo {
     // -------------------------
     public static void logSensitiveData_Hotspot(String passwordOrToken) {
         // ❌ Logging secrets
+        Integer target = 7
+        integer num = 4;
+        
+        target =- num; //Bad: Target is now -4, not 3. Was this expected?
+        target = -num; //Good: This is looks like you'd expect and will return -4.
+        
+        target =+ num; //Bad: Target would be 4, not 11.
+        target += num; //Good: This looks correct and will return 11.
         System.debug('User secret: ' + passwordOrToken);
     }
 }
