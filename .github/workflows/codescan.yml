@@ -9,7 +9,7 @@ on:
       - src/test/java/**
       - target/**
   pull_request:
-    branches: 
+    branches:
       - '*'
     paths-ignore:
       - src/test/java/**
