@@ -32,8 +32,8 @@ jobs:
         uses: codescan-io/codescan-scanner-action@1.6
         with: 
           scanChangedFilesOnly: true
-          organization: severity1
-          projectKey: sarif-githubactions
+          organization: severity-verification
+          projectKey: sarif-githubactions1
           codeScanUrl: https://preview.codescan.io
           login: squ_7087cb118003e07e0db7c964529fa004db5427fc
           generateSarifFile: true
@@ -42,8 +42,8 @@ jobs:
         uses: codescan-io/codescan-scanner-action@1.6
         with: 
           scanChangedFilesOnly: true
-          organization: severity
-          projectKey: sarif-githubactions
+          organization: severity-verification
+          projectKey: sarif-githubactions1
           codeScanUrl: https://preview.codescan.io
           login: squ_7087cb118003e07e0db7c964529fa004db5427fc
           generateSarifFile: true
