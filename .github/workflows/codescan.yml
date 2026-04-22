@@ -44,6 +44,7 @@ jobs:
           codeScanUrl: https://preview.codescan.io
           login: squ_7087cb118003e07e0db7c964529fa004db5427fc
           generateSarifFile: true
+          args: -X
       - name: Run Codescan On PR
         if: github.event_name == 'pull_request'
         uses: codescan-io/codescan-scanner-action@1.6
