@@ -1,6 +1,8 @@
 name: CI
 env:  
     SONAR_SCANNER_VERSION: 5.0.1.3006
+    ACTIONS_RUNNER_DEBUG: true
+    ACTIONS_STEP_DEBUG: true
 on:
   push: 
     branches:
@@ -16,7 +18,7 @@ on:
       - target/**
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
