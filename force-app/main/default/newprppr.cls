@@ -1,8 +1,26 @@
-private void bar() {
-     buz('Howdy');  //Bad: the String 'Howdy' could be declared as a constant field.
-     buz('Howdy');
-     buz('Howdy');
-     buz('Howdy');
- }
+public class DuplicateLiteralTest {
 
- private void buz(String x) {}
+    public void testMethod() {
+
+        // Same literal repeated multiple times → should trigger rule
+        System.debug('ERROR_MESSAGE');
+        System.debug('ERROR_MESSAGE');
+        System.debug('ERROR_MESSAGE');
+        System.debug('ERROR_MESSAGE');
+
+        // Another duplicate set
+        String a = 'DuplicateValue';
+        String b = 'DuplicateValue';
+        String c = 'DuplicateValue';
+
+        // Inside method calls
+        process('SAME_LITERAL');
+        process('SAME_LITERAL');
+        process('SAME_LITERAL');
+        process('SAME_LITERAL');
+    }
+
+    private void process(String input) {
+        System.debug(input);
+    }
+}
