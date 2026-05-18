@@ -2,7 +2,6 @@
 public with sharing class AvoidAbsoluteURL_DocumentforceCom {
     public static void runExamples() {
         // VIOLATION: static content absolute URL
-        String img = 'https://content.documentforce.com/servlet/servlet.ImageServer?id=015xx000003';
 
         // VIOLATION: cdn subdomain
         String cdn = 'https://cdn.documentforce.com/images/logo.png';
@@ -14,3 +13,4 @@ public with sharing class AvoidAbsoluteURL_DocumentforceCom {
         PageReference pr = new PageReference('HTTPS://docs.documentforce.com/servlet/servlet.FileDownload?file=00Pxx00000');
     }
 }
+
