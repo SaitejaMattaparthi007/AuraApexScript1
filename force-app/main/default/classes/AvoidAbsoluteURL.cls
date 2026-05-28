@@ -1,4 +1,4 @@
-public class Foo{
+public class Foo {
           public PageReference absoluteRedirect() {
               String fullUrl ='https://bad-practice.salesforce.com/TestPage?some=thing'; //Using this hardcoded URL could fail depending on the environment it was run in
               PageReference newUrl = new PageReference(fullURL);
@@ -14,3 +14,4 @@ public class Foo{
           }
       }
       
+
