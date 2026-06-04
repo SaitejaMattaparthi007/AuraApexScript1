@@ -1,8 +1,6 @@
 name: CI
 env:  
-    # SONAR_SCANNER_VERSION: 5.0.1.3006
-    ACTIONS_RUNNER_DEBUG: true
-    ACTIONS_STEP_DEBUG: true
+    SONAR_SCANNER_VERSION: 5.0.1.3006
 on:
   push: 
     branches:
@@ -11,14 +9,14 @@ on:
       - src/test/java/**
       - target/**
   pull_request:
-    branches:
+    branches: 
       - '*'
     paths-ignore:
       - src/test/java/**
       - target/**
 jobs:
   build:
-    runs-on: windows-2025
+    runs-on: macos-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -31,25 +29,23 @@ jobs:
             restore-keys: ${{ runner.os }}-sonar
       - name: Run Codescan On Push
         if: github.event_name == 'push'
-        uses: codescan-io/codescan-scanner-action@1.6
+        uses: codescan-io/codescan-scanner-action@2.0
         with: 
           scanChangedFilesOnly: true
-          organization: severity-verification
-          projectKey: sarif-githubactions1
-          codeScanUrl: https://preview.codescan.io
-          login: squ_7087cb118003e07e0db7c964529fa004db5427fc
+          organization: release-26-0-12
+          projectKey: github-actions
+          codeScanUrl: https://qa.codescan.io/
+          login: squ_a412ff67f2927b606e5ae2f9dee50d6c86a010f6
           generateSarifFile: true
-          args: |
-              sonar.verbose=true
       - name: Run Codescan On PR
         if: github.event_name == 'pull_request'
-        uses: codescan-io/codescan-scanner-action@1.6
+        uses: codescan-io/codescan-scanner-action@2.0
         with: 
           scanChangedFilesOnly: true
-          organization: severity-verification
-          projectKey: sarif-githubactions1
-          codeScanUrl: https://preview.codescan.io
-          login: squ_7087cb118003e07e0db7c964529fa004db5427fc
+          organization: release-26-0-12
+          projectKey: github-actions
+          codeScanUrl: https://qa.codescan.io/
+          login: squ_a412ff67f2927b606e5ae2f9dee50d6c86a010f6
           generateSarifFile: true
           args: |
             sonar.pullrequest.branch=${{github.head_ref}}
