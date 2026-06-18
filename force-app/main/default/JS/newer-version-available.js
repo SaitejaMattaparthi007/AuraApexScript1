@@ -1,8 +1,17 @@
 import { LightningElement } from 'lwc';
-import { getRecord } from 'lightning/uiRecordApi';
+import { NavigationMixin } from 'lightning/navigation';
 
-// Using a deprecated version of the wire adapter
-export default class MyComponent extends LightningElement {
-    @wire(getRecord, { recordId: '$recordId', fields: ['Account.Name'] })
-    account;
+export default class DeprecatedApiTest extends NavigationMixin(LightningElement) {
+
+    connectedCallback() {
+        this[NavigationMixin.GenerateUrl]({
+            type: 'standard__recordPage',
+            attributes: {
+                recordId: '001000000000001AAA',
+                actionName: 'view'
+            }
+        }).then(url => {
+            console.log(url);
+        });
+    }
 }
