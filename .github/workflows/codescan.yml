@@ -32,20 +32,20 @@ jobs:
         uses: codescan-io/codescan-scanner-action@2.0
         with: 
           scanChangedFilesOnly: true
-          organization: release-26-0-12
-          projectKey: ghactions
-          codeScanUrl: https://qa.codescan.io/
-          login: squ_722baf22b4d99b80c688da698b1abfbc4f814ae4
+          organization: customrules-xpath
+          projectKey: 1-ghactions
+          codeScanUrl: https://preview.codescan.io/
+          login: squ_e9c2413b52cdec180adf2965822bd1b352bbd2c3
           generateSarifFile: true
       - name: Run Codescan On PR
         if: github.event_name == 'pull_request'
         uses: codescan-io/codescan-scanner-action@2.0
         with: 
           scanChangedFilesOnly: true
-          organization: release-26-0-12
-          projectKey: ghactions
-          codeScanUrl: https://qa.codescan.io/
-          login: squ_722baf22b4d99b80c688da698b1abfbc4f814ae4
+          organization: customrules-xpath
+          projectKey: 1-ghactions
+          codeScanUrl: https://preview.codescan.io/
+          login: squ_e9c2413b52cdec180adf2965822bd1b352bbd2c3
           generateSarifFile: true
           args: |
             sonar.pullrequest.branch=${{github.head_ref}}
