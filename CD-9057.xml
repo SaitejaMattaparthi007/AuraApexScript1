@@ -1,0 +1,30 @@
+<!-- Layout: Loan-Loan Layout.layout -->
+<Layout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>LLC_BI__Loan__c-Loan Layout</fullName>
+    <layoutSections>
+        <label>Loan Information</label>
+        <layoutColumns>
+            <layoutItems><field>LLC_BI__Amount__c</field></layoutItems>
+            <layoutItems><field>LLC_BI__Rate__c</field></layoutItems>
+            <layoutItems><field>LLC_BI__Term__c</field></layoutItems>
+            <layoutItems><field>LLC_BI__Status__c</field></layoutItems>
+            <layoutItems><field>LLC_BI__Product__c</field></layoutItems>
+            <layoutItems><field>LLC_BI__Borrower__c</field></layoutItems>
+            <layoutItems><field>LLC_BI__Close_Date__c</field></layoutItems>
+            <layoutItems><field>LLC_BI__Maturity_Date__c</field></layoutItems>
+            <layoutItems><field>LLC_BI__Payment_Frequency__c</field></layoutItems>
+            <layoutItems><field>LLC_BI__Collateral__c</field></layoutItems>
+            <layoutItems><field>LLC_BI__Risk_Rating__c</field></layoutItems>
+            <layoutItems><field>LLC_BI__Officer__c</field></layoutItems>
+            <layoutItems><field>LLC_BI__Branch__c</field></layoutItems>
+            <layoutItems><field>LLC_BI__Division__c</field></layoutItems>
+            <layoutItems><field>LLC_BI__Region__c</field></layoutItems>
+            <layoutItems><field>LLC_BI__Purpose__c</field></layoutItems>
+            <layoutItems><field>LLC_BI__Commitment__c</field></layoutItems>
+            <layoutItems><field>LLC_BI__Outstanding__c</field></layoutItems>
+            <layoutItems><field>LLC_BI__Available__c</field></layoutItems>
+            <layoutItems><field>LLC_BI__Accrual_Basis__c</field></layoutItems>
+            <!-- 20+ fields in single section - EXCESSIVE - should trigger -->
+        </layoutColumns>
+    </layoutSections>
+</Layout>
