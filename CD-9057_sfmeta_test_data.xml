@@ -1,8 +1,0 @@
-<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
-    <label>Vehicle Collateral</label>
-
-    <CollateralType>
-        <Name>Vehicle</Name>
-        <CollateralConfiguration></CollateralConfiguration>
-    </CollateralType>
-</CustomObject>
