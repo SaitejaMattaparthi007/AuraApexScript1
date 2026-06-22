@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Rule: sfmeta:CommunityGuestUserAccess
+    NEGATIVE TEST: Network with guest access DISABLED
+    This should NOT trigger the rule even if the guest profile has excessive permissions.
+-->
+<Network xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Internal_Community</fullName>
+    <description>Internal Employee Community</description>
+    <status>Live</status>
+    <optionsAllowGuestAccess>false</optionsAllowGuestAccess>  <!-- GUEST ACCESS DISABLED - should NOT trigger -->
+    <optionsAllowMembersToFlag>true</optionsAllowMembersToFlag>
+    <optionsGuestChatterEnabled>false</optionsGuestChatterEnabled>
+    <selfRegistration>false</selfRegistration>
+    <urlPathPrefix>internal</urlPathPrefix>
+</Network>

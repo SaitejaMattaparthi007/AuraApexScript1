@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Rule: sfmeta:CommunityGuestUserAccess
+    Condition: Network metadata with guest access enabled
+    This file defines an Experience Cloud community with guest access turned ON.
+    The associated Guest User Profile (see file 02) has excessive permissions.
+-->
+<Network xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Customer_Community</fullName>
+    <description>Customer Community Portal</description>
+    <status>Live</status>
+    <optionsAllowGuestAccess>true</optionsAllowGuestAccess>  <!-- GUEST ACCESS ENABLED - triggers rule -->
+    <optionsAllowMembersToFlag>true</optionsAllowMembersToFlag>
+    <optionsGuestChatterEnabled>true</optionsGuestChatterEnabled>
+    <selfRegistration>true</selfRegistration>
+    <urlPathPrefix>customers</urlPathPrefix>
+    <welcomeTemplate>CommunityWelcome</welcomeTemplate>
+</Network>

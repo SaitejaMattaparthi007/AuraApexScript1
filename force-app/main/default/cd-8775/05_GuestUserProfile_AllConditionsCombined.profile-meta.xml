@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Rule: sfmeta:CommunityGuestUserAccess
+    ALL CONDITIONS COMBINED (A + B + C) in a single profile
+    This file triggers ALL three conditions simultaneously:
+      A. Excessive object-level permissions
+      B. PII field-level access
+      C. Apex class access enabled
+-->
+<Profile xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Customer Community Guest User</fullName>
+    <custom>false</custom>
+    <userLicense>Guest User</userLicense>
+
+    <!-- ============================================ -->
+    <!-- CONDITION A: Excessive Object-Level Permissions -->
+    <!-- ============================================ -->
+
+    <objectPermissions>
+        <object>Account</object>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
+        <allowRead>true</allowRead>  <!-- TRIGGER A -->
+        <modifyAllRecords>false</modifyAllRecords>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+
+    <objectPermissions>
+        <object>Contact</object>
+        <allowCreate>true</allowCreate>  <!-- TRIGGER A -->
+        <allowDelete>false</allowDelete>
+        <allowEdit>true</allowEdit>  <!-- TRIGGER A -->
+        <allowRead>true</allowRead>  <!-- TRIGGER A -->
+        <modifyAllRecords>false</modifyAllRecords>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
+
+    <objectPermissions>
+        <object>Lead</object>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
+        <allowRead>true</allowRead>  <!-- TRIGGER A -->
+        <modifyAllRecords>false</modifyAllRecords>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
+
+    <objectPermissions>
+        <object>User</object>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
+        <allowRead>true</allowRead>  <!-- TRIGGER A -->
+        <modifyAllRecords>false</modifyAllRecords>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
+
+    <objectPermissions>
+        <object>Sensitive_Data__c</object>
+        <allowCreate>true</allowCreate>  <!-- TRIGGER A -->
+        <allowDelete>true</allowDelete>  <!-- TRIGGER A -->
+        <allowEdit>true</allowEdit>  <!-- TRIGGER A -->
+        <allowRead>true</allowRead>  <!-- TRIGGER A -->
+        <modifyAllRecords>true</modifyAllRecords>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+
+    <!-- ============================================ -->
+    <!-- CONDITION B: PII Field-Level Access -->
+    <!-- ============================================ -->
+
+    <fieldPermissions>
+        <field>Contact.Email</field>
+        <editable>false</editable>
+        <readable>true</readable>  <!-- TRIGGER B: *Email* -->
+    </fieldPermissions>
+
+    <fieldPermissions>
+        <field>Contact.Phone</field>
+        <editable>false</editable>
+        <readable>true</readable>  <!-- TRIGGER B: *Phone* -->
+    </fieldPermissions>
+
+    <fieldPermissions>
+        <field>Contact.MobilePhone</field>
+        <editable>false</editable>
+        <readable>true</readable>  <!-- TRIGGER B: *Phone* -->
+    </fieldPermissions>
+
+    <fieldPermissions>
+        <field>Contact.SSN__c</field>
+        <editable>false</editable>
+        <readable>true</readable>  <!-- TRIGGER B: *SSN* -->
+    </fieldPermissions>
+
+    <fieldPermissions>
+        <field>Customer_Data__c.Password__c</field>
+        <editable>false</editable>
+        <readable>true</readable>  <!-- TRIGGER B: *Password* -->
+    </fieldPermissions>
+
+    <fieldPermissions>
+        <field>Lead.Email</field>
+        <editable>true</editable>
+        <readable>true</readable>  <!-- TRIGGER B: *Email* -->
+    </fieldPermissions>
+
+    <!-- ============================================ -->
+    <!-- CONDITION C: Apex Class Access Enabled -->
+    <!-- ============================================ -->
+
+    <classAccesses>
+        <apexClass>AccountController</apexClass>
+        <enabled>true</enabled>  <!-- TRIGGER C -->
+    </classAccesses>
+
+    <classAccesses>
+        <apexClass>PaymentProcessor</apexClass>
+        <enabled>true</enabled>  <!-- TRIGGER C -->
+    </classAccesses>
+
+    <classAccesses>
+        <apexClass>DataExportUtility</apexClass>
+        <enabled>true</enabled>  <!-- TRIGGER C -->
+    </classAccesses>
+
+    <classAccesses>
+        <apexClass>SafePublicController</apexClass>
+        <enabled>false</enabled>  <!-- NOT a trigger - disabled -->
+    </classAccesses>
+</Profile>

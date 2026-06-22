@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Rule: sfmeta:CommunityGuestUserAccess
+    NEGATIVE TEST: Guest User Profile with MINIMAL/SAFE permissions
+    This should NOT trigger any of the three conditions.
+-->
+<Profile xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Customer Community Guest User</fullName>
+    <custom>false</custom>
+    <userLicense>Guest User</userLicense>
+
+    <!-- SAFE: No read on sensitive standard objects -->
+    <objectPermissions>
+        <object>Knowledge__kav</object>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
+        <allowRead>true</allowRead>  <!-- Knowledge articles are safe for guests -->
+        <modifyAllRecords>false</modifyAllRecords>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
+
+    <!-- SAFE: Non-PII fields only -->
+    <fieldPermissions>
+        <field>Knowledge__kav.Title</field>
+        <editable>false</editable>
+        <readable>true</readable>  <!-- NOT PII - should NOT trigger -->
+    </fieldPermissions>
+
+    <fieldPermissions>
+        <field>Knowledge__kav.Summary</field>
+        <editable>false</editable>
+        <readable>true</readable>  <!-- NOT PII - should NOT trigger -->
+    </fieldPermissions>
+
+    <!-- SAFE: All Apex classes disabled -->
+    <classAccesses>
+        <apexClass>PublicKnowledgeController</apexClass>
+        <enabled>false</enabled>  <!-- DISABLED - should NOT trigger -->
+    </classAccesses>
+</Profile>
