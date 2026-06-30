@@ -1,16 +1,26 @@
-// file: force-app/main/default/lwc/ssrComponent/ssrComponent.js
+// ❌ VIOLATION: Importing disallowed modules in SSR context
+// File: disallowedImports.js
 import { LightningElement } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
-import tmpl from './ssrComponent.html';
+import { ShowToastEvent } from 'lightning/platformShowToastEvent';
+import { loadScript } from 'lightning/platformResourceLoader';
 
-export default class SsrComponent extends NavigationMixin(LightningElement) {
-    render() {
-        return tmpl;
-    }
-    navigate() {
+export default class DisallowedImports extends NavigationMixin(LightningElement) {
+    navigateToRecord() {
         this[NavigationMixin.Navigate]({
             type: 'standard__recordPage',
-            attributes: { recordId: '001xx000003DGbY', actionName: 'view' }
+            attributes: {
+                recordId: '001xx000003DGbYAAW',
+                actionName: 'view'
+            }
         });
+    }
+
+    showToast() {
+        this.dispatchEvent(new ShowToastEvent({
+            title: 'Success',
+            message: 'Record updated',
+            variant: 'success'
+        }));
     }
 }
