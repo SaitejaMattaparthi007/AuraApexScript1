@@ -32,8 +32,8 @@ jobs:
         uses: codescan-io/codescan-scanner-action@2.0
         with: 
           scanChangedFilesOnly: true
-          organization: customrules-xpath
-          projectKey: 1-ghactions
+          organization: cd-8508
+          projectKey: 1-ghactions2
           codeScanUrl: https://preview.codescan.io/
           login: squ_e9c2413b52cdec180adf2965822bd1b352bbd2c3
           generateSarifFile: true
@@ -42,8 +42,8 @@ jobs:
         uses: codescan-io/codescan-scanner-action@2.0
         with: 
           scanChangedFilesOnly: true
-          organization: customrules-xpath
-          projectKey: 1-ghactions
+          organization: cd-8508
+          projectKey: 1-ghactions2
           codeScanUrl: https://preview.codescan.io/
           login: squ_e9c2413b52cdec180adf2965822bd1b352bbd2c3
           generateSarifFile: true
