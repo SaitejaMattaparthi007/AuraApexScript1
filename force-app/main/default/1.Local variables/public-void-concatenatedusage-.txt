@@ -1,0 +1,5 @@
+    public void concatenatedUsage(String p1, String p2) {
+        String c = 'Status = :p1';
+        c += ' AND Type = :p2';
+        Database.getQueryLocator(c);
+    }

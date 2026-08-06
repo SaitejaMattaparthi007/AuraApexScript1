@@ -1,0 +1,9 @@
+    public void validUsage(String p1, Boolean check) {
+        String q = 'SELECT Id FROM Account';
+        if(check) {
+            q += ' WHERE Name = :p1';
+        } else {
+            q += ' WHERE Description = :p1';
+        }
+        Database.query(q);
+    }

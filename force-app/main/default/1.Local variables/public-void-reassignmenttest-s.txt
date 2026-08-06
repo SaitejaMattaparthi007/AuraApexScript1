@@ -1,0 +1,5 @@
+    public void reassignmentTest(String p1, String p2) {
+        String cond = 'Name = :p1';
+        cond = 'Name = :p2'; // p1 is now effectively unused in the final query
+        Database.query(cond);
+    }
