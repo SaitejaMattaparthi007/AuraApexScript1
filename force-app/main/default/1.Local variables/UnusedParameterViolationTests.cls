@@ -93,3 +93,37 @@ public class CaseSensitivityTests {
         qb.setCondition(cond);
     }
 }
+public class ReassignmentViolationTests {
+
+    /**
+     * Scenario: Parameter p1 is used in the first string, 
+     * but the variable 'q' is overwritten with a static string 
+     * before being passed to the Database.query method.
+     */
+    public void testReassignmentViolation(String p1) {
+        // Initial assignment uses p1
+        String q = 'SELECT Id FROM Account WHERE Name = :p1';
+        
+        // Re-assignment overwrites q and removes the reference to p1
+        q = 'SELECT Id FROM Account WHERE Name = \'StaticValue\'';
+        
+        // The sink uses the version of 'q' that does NOT contain p1
+        Database.query(q); 
+    }
+
+    /**
+     * Scenario: Conditional re-assignment where p1 is only used in one branch.
+     * If the branch that uses p1 is not the one that reaches the sink, 
+     * it should be flagged (depending on engine flow analysis).
+     */
+    public void testConditionalReassignment(String p1, Boolean useStatic) {
+        String q = 'SELECT Id FROM Account WHERE Name = :p1';
+        
+        if (useStatic) {
+            q = 'SELECT Id FROM Account LIMIT 1';
+        }
+        
+        // If useStatic is true, p1 is unused in the final execution path.
+        Database.query(q);
+    }
+}
