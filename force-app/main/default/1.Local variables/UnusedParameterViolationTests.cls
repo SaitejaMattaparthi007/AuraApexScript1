@@ -71,3 +71,25 @@ public class UnusedParameterViolationTests {
         }
     }
 }
+public class CaseSensitivityTests {
+    
+    /**
+     * Scenario: Parameter is PascalCase, Bind Variable is lowercase.
+     * Apex is case-insensitive, so this is valid usage.
+     */
+    public void testCaseInsensitivity(String MyParam) {
+        // The rule should resolve 'MyParam' as used even though the string uses ':myparam'
+        String queryStr = 'SELECT Id FROM Account WHERE Name = :myparam';
+        Database.query(queryStr);
+    }
+
+    /**
+     * Scenario: Parameter is lowercase, Bind Variable is UPPERCASE.
+     * This should also be correctly identified as "used".
+     */
+    public void testInverseCase(String status) {
+        String cond = 'Status = :STATUS';
+        QueryBuilder qb = new QueryBuilder();
+        qb.setCondition(cond);
+    }
+}
