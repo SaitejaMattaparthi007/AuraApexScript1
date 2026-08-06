@@ -10,8 +10,9 @@ public class SophosUnusedParameterTests {
      * Scenario: Basic Variable Assignment
      * Expected: No issue for 'name'.
      */
-    public void basicVariableUsage(String name) {
-        String cond = 'Name = :name', 'Name2 = :name2';
+    public void basicVariableUsage(String name, String name2) {
+        String cond = 'Name = :name';
+        String cond1 = 'Name2 = :name2'
         // Simulating a dynamic SOQL sink
         Database.query('SELECT Id FROM Account WHERE ' + cond);
     }
