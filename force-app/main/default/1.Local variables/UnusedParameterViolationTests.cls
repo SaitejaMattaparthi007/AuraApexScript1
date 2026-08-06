@@ -33,7 +33,6 @@ public class UnusedParameterViolationTests {
      */
     public void triggerReassignmentViolation(String p1, String p2) {
         String soql = 'Name = :p1';
-        soql = 'Name = :p2'; 
         Database.query('SELECT Id FROM Lead WHERE ' + soql);
     }
 
