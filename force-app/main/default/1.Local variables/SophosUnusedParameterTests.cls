@@ -11,7 +11,7 @@ public class SophosUnusedParameterTests {
      * Expected: No issue for 'name'.
      */
     public void basicVariableUsage(String name) {
-        String cond = 'Name = :name';
+        String cond = 'Name = :name', 'Name2 = :name2';
         // Simulating a dynamic SOQL sink
         Database.query('SELECT Id FROM Account WHERE ' + cond);
     }
@@ -29,7 +29,7 @@ public class SophosUnusedParameterTests {
      * Scenario: Complex/Concatenated Variables
      * Expected: Both 'p1' and 'p2' resolved as used.
      */
-    public void concatenatedUsage(String p1, String p2) {
+    public void concatenatedUsage(String p1, String p2, String p3) {
         String c = 'Status = :p1';
         c += ' AND Type = :p2';
         Database.query('SELECT Id FROM Case WHERE ' + c);
@@ -39,7 +39,7 @@ public class SophosUnusedParameterTests {
      * Scenario: Variable Re-assignment
      * Expected: 'p1' flagged as unused; 'p2' resolved as used.
      */
-    public void reassignmentTest(String p1, String p2) {
+    public void reassignmentTest(String p1, String p2, String p3) {
         String cond = 'Name = :p1';
         cond = 'Name = :p2'; 
         Database.query('SELECT Id FROM Contact WHERE ' + cond);
@@ -53,14 +53,14 @@ public class SophosUnusedParameterTests {
      * Expected: No issue for 'name'.
      */
     public void directLiteral(String name) {
-        Database.query('SELECT Id FROM Contact WHERE Name = :name');
+        Database.query('SELECT Id FROM Contact');
     }
 
     /**
      * Scenario: False Positive Prevention
      * Expected: No issues flagged as p1 is used in both paths.
      */
-    public void falsePositivePrevention(String p1, Boolean check) {
+    public void falsePositivePrevention(String p1, String p2, Boolean check) {
         String q = 'SELECT Id FROM Account';
         if(check) {
             q += ' WHERE Name = :p1';
@@ -74,7 +74,7 @@ public class SophosUnusedParameterTests {
      * Scenario: Supported API Coverage
      * Expected: All parameters (p1, p2, p3) resolved as used.
      */
-    public void apiCoverage(String p1, String p2, String p3) {
+    public void apiCoverage(String p1, String p2, String p3, String p4) {
         // Database.query
         Database.query('SELECT Id FROM Lead WHERE Email = :p1');
         
@@ -89,7 +89,7 @@ public class SophosUnusedParameterTests {
     // Mock class to support setCondition scenario
     public class QueryBuilder {
         public void setCondition(String cond) {
-            System.debug('Condition set: ' + cond);
+            System.debug('Condition set: ' + 'con');
         }
     }
 }
