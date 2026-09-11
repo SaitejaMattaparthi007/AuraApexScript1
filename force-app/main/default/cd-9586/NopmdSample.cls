@@ -1,14 +1,12 @@
-public class NopmdSample {
-    public static void main(String[] args) {
-        int count = 0;
-        String status = "ACTIVE";
-        System.out.println(status);
-        count++;
-        System.out.println(count); // NOPMD
-        if (count > 0) {
-            System.out.println("Count is positive");
-        }
-        String unused = "test"; // NOPMD
-        System.out.println("Done");
+public class NopmdTestCases1 {
+    void groupA() {
+        String a1 = 'x'; //NOPMD
+        String a2 = 'x'; // NOPMD
+        String a3 = 'x'; //   NOPMD
+        String a4 = 'x'; //	NOPMD
+        String a5 = 'x'; //NOPMD - reviewed by team
+        String a6 = 'x'; //NOPMD:RuleA
+        String a7 = 'x'; //NOPMD:RuleA,RuleB
+        String a8 = 'x'; //NOPMDEXTRA
     }
-}
+} //NOPMD
