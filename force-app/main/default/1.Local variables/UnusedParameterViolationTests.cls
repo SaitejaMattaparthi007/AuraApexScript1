@@ -50,7 +50,7 @@ public class UnusedParameterViolationTests {
      */
     public void triggerQueryLocatorViolation(String p1, String p2) {
         String queryStr = 'SELECT Id FROM Opportunity WHERE StageName = :p1';
-        Database.getQueryLocator(queryStr);
+        Database.getQueryLocator(queryStr, AccessLevel.USER_MODE);
     }
 
     /**
@@ -127,3 +127,4 @@ public class ReassignmentViolationTests {
         Database.query(q);
     }
 }
+
