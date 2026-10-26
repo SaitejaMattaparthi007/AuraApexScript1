@@ -93,7 +93,7 @@ jobs:
         with:
           sarif_file: codescan.sarif
           wait-for-processing: true
-
+          
       # -----------------------------
       # SARIF Artifact Upload
       # -----------------------------
