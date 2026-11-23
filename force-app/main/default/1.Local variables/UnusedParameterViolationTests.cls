@@ -12,6 +12,7 @@ public class UnusedParameterViolationTests {
      * VIOLATION: 'unusedParam' is defined but never referenced.
      */
     public void triggerBasicViolation(String usedParam, String unusedParam) {
+        // Query to select Account records filtered by the usedParam name value
         String query = 'SELECT Id FROM Account WHERE Name = :usedParam';
         Database.query(query);
     }
@@ -20,7 +21,7 @@ public class UnusedParameterViolationTests {
      * SCENARIO 2: Unused Parameter in Concatenation
      * VIOLATION: 'p3' is defined but omitted from the final concatenated string.
      */
-    public void triggerConcatenationViolation(String p1, String p2, String p3) {
+    public void triggerConcatenationViolation(String p1, String p2, String thirdParam) {
         String cond = 'Name = :p1';
         cond += ' AND Status = :p2';
         Database.query('SELECT Id FROM Contact WHERE ' + cond);
@@ -127,3 +128,4 @@ public class ReassignmentViolationTests {
         Database.query(q);
     }
 }
+
