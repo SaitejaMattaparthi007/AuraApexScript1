@@ -48,10 +48,10 @@ jobs:
         uses: codescan-io/codescan-scanner-action@prerelease-3.1
         with:
           scanChangedFilesOnly: true
-          organization: v25-1-15
-          projectKey: gh-actions-test
-          codeScanUrl: https://test.codescan.io/
-          login: squ_386c09bcc77ec7b4d570b3fc5e41eca521f41ac2
+          organization: vadevtesting
+          projectKey: gh-actions-vadev
+          codeScanUrl: https://vadev.codescan.io/
+          login: squ_c26fb816458f0972be44f1d50a640d5b5fc82d64
 
           # SARIF generation enabled
           generateSarifFile: true
@@ -64,10 +64,10 @@ jobs:
         uses: codescan-io/codescan-scanner-action@prerelease-3.1
         with:
           scanChangedFilesOnly: true
-          organization: v25-1-15
-          projectKey: gh-actions-test
-          codeScanUrl: https://test.codescan.io/
-          login: squ_386c09bcc77ec7b4d570b3fc5e41eca521f41ac2
+          organization: vadevtesting
+          projectKey: gh-actions-vadev
+          codeScanUrl: https://vadev.codescan.io/
+          login: squ_c26fb816458f0972be44f1d50a640d5b5fc82d64
 
           # SARIF generation enabled
           generateSarifFile: true
