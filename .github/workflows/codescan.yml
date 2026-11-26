@@ -49,10 +49,10 @@ jobs:
         with:
           scanChangedFilesOnly: true
           organization: vadevtesting
-          projectKey: gh-actions-admin
+          projectKey: newgh-actions-admin
           codeScanUrl: https://vadev.codescan.io/
-          login: squ_0d110d325d9b28127138377eb1cc8c235258da94
-
+          login: squ_5c1c6f53842fe07ee8ca124fac701a552f26f5dd
+          
           # SARIF generation enabled
           generateSarifFile: true
 
@@ -65,10 +65,9 @@ jobs:
         with:
           scanChangedFilesOnly: true
           organization: vadevtesting
-          projectKey: gh-actions-admin
+          projectKey: newgh-actions-admin
           codeScanUrl: https://vadev.codescan.io/
-          login: squ_0d110d325d9b28127138377eb1cc8c235258da94
-
+          login: squ_5c1c6f53842fe07ee8ca124fac701a552f26f5dd
           # SARIF generation enabled
           generateSarifFile: true
 
